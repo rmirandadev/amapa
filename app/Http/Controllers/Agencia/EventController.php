@@ -15,6 +15,8 @@ class EventController extends Controller
     public function show($slug)
     {
         $event = Event::whereSlug($slug)->first();
+        if($event->status != '1')
+            return abort(403,'Evento não existe');
         return view('agency.event.show',compact('event'));
     }
 }

@@ -25,12 +25,12 @@ class AgencyEventList extends Component
     public function render()
     {
         $search = '%'.$this->search.'%';
-        $events = Event::where('name','like', $search)
+        $events = Event::active()->where([
+            ['name','like', $search],
+            ['initial_date',$this->open ? '>=' : '<',date('Y-m-d')]])
             ->where(function($query) use ($search){
-                $query->where('initial_date',$this->open ? '>=' : '<',date('Y-m-d'))
-                    ->orWhere('local','like', $search);
+                $query->orWhere('local','like', $search);
             })
-            ->where('initial_date',$this->open ? '>=' : '<',date('Y-m-d'))
             ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
             ->paginate($this->pagina);
         return view('livewire.agency.agency-event-list',compact('events'));
