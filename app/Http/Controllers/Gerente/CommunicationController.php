@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Gerente;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CommunicationRequest;
 use App\Models\User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
@@ -26,6 +26,7 @@ class CommunicationController extends Controller
 
     public function edit($id)
     {
+
         $this->verify($id);
         $user = User::findOrFail($id);
         $roles = Role::pluck('name','name');
@@ -47,11 +48,11 @@ class CommunicationController extends Controller
         $user = User::findOrFail($id);
         $user->update($data);
 
-        if(auth()->hasRole('Administrador'))
+        if($user->hasRole('Administrador'))
         {
             return redirect()->route('user.index')->withToastSuccess('Usuário atualizado!');
         }
-        return redirect()->route('communication.show',Auth::user()->id)->withToastSuccess('Usuário atualizado!');
+        return redirect()->route('communication.show',$id)->withToastSuccess('Usuário atualizado!');
 
     }
 }
