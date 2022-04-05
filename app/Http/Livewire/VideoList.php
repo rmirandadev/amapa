@@ -16,6 +16,7 @@ class VideoList extends Component
 
     protected $paginationTheme = 'bootstrap';
 
+
     public function updatingSearch()
     {
         $this->resetPage();
