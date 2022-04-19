@@ -50,13 +50,25 @@
                 </td>
                 <td class="text-center" style="width: 20px">{!! $user->StatusView !!}</td>
                 <td class="text-center">
-                    <span data-toggle="popover" title="{{ $user->user->name }}" data-content="<i class='fas fa-calendar-alt'></i> Em: {{date('d/m/Y',strtotime($user->updated_at))}} às {{date('H:i',strtotime($user->updated_at))}}h" class="btn btn-dark btn-xs"><i class="fas fa-user"></i></span>
-                    <a href="{{ route('user.show',$user->id) }}" class="btn btn-warning btn-xs"><i class="fas fa-eye"></i></a>
-                    <a href="{{ route('user.edit',$user->id) }}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
 
-                    {!! Form::model($user, ['method' => 'delete', 'route' => ['user.destroy', $user->id], 'class' =>'form-delete', 'style' => 'display:inline']) !!}
-                    <button type="submit" @if(Auth::user()->id == $user->id) disabled @endif name="delete_modal" class="btn btn-danger btn-xs delete"><i class="fa fa-trash"></i></button>
-                    {!! Form::close() !!}
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <a href="{{ route('user.show',$user->user->id) }}" data-toggle="popover" title="{{ $user->user->name }}" data-content="<i class='fas fa-calendar-alt'></i> Em: {{date('d/m/Y',strtotime($user->updated_at))}} às {{date('H:i',strtotime($user->updated_at))}}h" class="btn btn-dark btn-xs"><i class="fas fa-user"></i></a>
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-xs btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-tools mr-1"></i> Ações
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="{{ route('user.show',$user->id) }}"><i class="fas fa-eye"></i> Detalhes</a>
+                                <a class="dropdown-item" href="{{ route('user.edit',$user->id) }}"><i class="fas fa-edit"></i> Editar</a>
+                                @if(Auth::user()->id != $user->id)
+                                    <div class="dropdown-divider"></div>
+                                    {!! Form::model($user, ['method' => 'delete', 'route' => ['user.destroy', $user->id], 'class' =>'form-delete']) !!}
+                                    <a class="dropdown-item text-danger" type="submit" class="delete"><i class="fas fa-trash-alt"></i> Deletar</a>
+                                    {!! Form::close() !!}
+                                @endif
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
         @empty

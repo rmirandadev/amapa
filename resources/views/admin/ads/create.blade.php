@@ -8,7 +8,7 @@
 s
 @section('content')
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-8">
             <div class="card">
                 {!! Form::open(['route' => 'ads.store','files' => true]) !!}
                 <div class="card-header bg-success">Adicionar publicidade</div>
@@ -23,7 +23,7 @@ s
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-header bg-info">Dimensões</div>
                 <div class="card-body">
