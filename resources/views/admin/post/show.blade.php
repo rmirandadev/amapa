@@ -16,10 +16,10 @@
                 @endrole
 
                 @role('Assessor')
-                @if($post->finished == 0)
-                    <a href="{{route('post.edit',$post->id)}}" class="btn btn-info btn-sm"> <i class="fas fa-edit"></i> Editar</a>
-                @else
+                @if(auth()->user()->hasRole('Assessor') && $post->user_finished_id != null)
                     <button href="" class="btn btn-info btn-sm" disabled><i class="fas fa-edit"></i> Editar</button>
+                @else
+                    <a href="{{route('post.edit',$post->id)}}" class="btn btn-info btn-sm"> <i class="fas fa-edit"></i> Editar</a>
                 @endif
                 @endrole
             </div>

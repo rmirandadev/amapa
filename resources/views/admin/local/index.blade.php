@@ -14,7 +14,7 @@
         <div class="card-header">
             <h3 class="card-title mt-2">Listagem</h3>
             <div class="card-tools">
-                <a href="{{route('local.create')}}" class="btn btn-success text-white"> <i class="fas fa-folder-plus"></i> Adicionar</a>
+                <a href="{{route('local.create')}}" class="btn btn-sm btn-success text-white"> <i class="fas fa-folder-plus"></i> Adicionar</a>
             </div>
         </div>
         @livewire('local-list')

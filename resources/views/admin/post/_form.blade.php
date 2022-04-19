@@ -13,6 +13,13 @@
         <small class="form-text text-danger">{{ $errors->first('subcategory_id') }}</small>
         @enderror
     </div>
+    <div class="col-md-12 form-group">
+        {!! Form::label('topic_id', 'Tópico'); !!}
+        {!! Form::select('topic_id',$topics,null,['class'=>'form-control select2', 'id'=>'topic_id', 'placeholder' => 'Selecione um tópico'])!!}
+        @error('topic_id')
+        <small class="form-text text-danger">{{ $errors->first('topic_id') }}</small>
+        @enderror
+    </div>
     <div class="col-md-12 mb-3">
         {!! Form::label('title', 'Título'); !!}
         {!! Form::text('title',null,['class' => 'form-control' . ( $errors->has('title') ? ' is-invalid' : '' )]) !!}
@@ -103,7 +110,7 @@
         <small class="form-text text-danger">{{ $errors->first('company_id') }}</small>
         @enderror
     </div>
-    @role('Admnistrador|Editor')
+    @role('Administrador|Editor')
         <div class="col-md-4 mb-3">
             {!! Form::label('finished', 'Finalizada'); !!}
             {!! Form::select('finished', \App\Models\Post::FINISHED, null,['class' => 'form-control form-group select2','placeholder' => 'Selecione...']); !!}

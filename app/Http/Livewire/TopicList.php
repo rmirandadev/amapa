@@ -2,16 +2,17 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Video;
+use App\Models\Category;
+use App\Models\Topic;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class AgencyVideoList extends Component
+class TopicList extends Component
 {
     use WithPagination;
-
     public $search = '';
-    public $orderBy = 'id';
+    public $pagina = 10;
+    public $orderBy = 'name';
     public $orderAsc = true;
 
     protected $paginationTheme = 'bootstrap';
@@ -24,10 +25,9 @@ class AgencyVideoList extends Component
     public function render()
     {
         $search = '%'.$this->search.'%';
-        $videos = Video::where('name','like', $search)
-            ->orWhere('text','like', $search)
-            ->orderBy($this->orderBy, $this->orderAsc ? 'desc' : 'asc')
-            ->paginate(6);
-        return view('livewire.agency.agency-video-list',['videos' => $videos]);
+        $topics = Topic::where('name','like', $search)
+            ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
+            ->paginate($this->pagina);
+        return view('livewire.admin.topic-list',['topics' => $topics]);
     }
 }

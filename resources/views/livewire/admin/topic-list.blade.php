@@ -30,26 +30,24 @@
     <table class="table table-hover table-striped mb-3">
         <thead>
         <tr>
-            <th>Nome</th>
-            <th class="text-center w-25">Ação</th>
+            <th>Tópico</th>
+            <th class="text-center">Ação</th>
         </tr>
         </thead>
         <tbody>
-        @forelse($plataforms as $plataform)
+        @forelse($topics as $topic)
             <tr>
-                <td>{{ $plataform->name }}</td>
+                <td>{{ $topic->name }}</td>
                 <td class="text-center">
-
                     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                        <a href="{{ route('user.show',$plataform->user->id) }}" data-toggle="popover" title="{{ $plataform->user->name }}" data-content="<i class='fas fa-calendar-alt'></i> Em: {{date('d/m/Y',strtotime($plataform->updated_at))}} às {{date('H:i',strtotime($plataform->updated_at))}}h" class="btn btn-dark btn-xs"><i class="fas fa-user"></i></a>
                         <div class="btn-group" role="group">
                             <a class="btn btn-xs btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-tools mr-1"></i> Ações
                             </a>
                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                <a class="dropdown-item" href="{{ route('plataform.edit',$plataform->id) }}"><i class="fas fa-edit"></i> Editar</a>
+                                <a class="dropdown-item" href="{{ route('topic.edit',$topic->id) }}"><i class="fas fa-edit"></i> Editar</a>
                                 <div class="dropdown-divider"></div>
-                                {!! Form::model($plataform, ['method' => 'delete', 'route' => ['plataform.destroy', $plataform->id], 'class' =>'form-delete']) !!}
+                                {!! Form::model($topic, ['method' => 'delete', 'route' => ['topic.destroy', $topic->id], 'class' =>'form-delete']) !!}
                                 <a class="dropdown-item text-danger" type="submit" class="delete"><i class="fas fa-trash-alt"></i> Deletar</a>
                                 {!! Form::close() !!}
                             </div>
@@ -59,11 +57,11 @@
             </tr>
         @empty
             <tr>
-                <td colspan="5" class="text-center">Sem Resultados</td>
+                <td colspan="3" class="text-center">Sem Resultados</td>
             </tr>
         @endforelse
         </tbody>
     </table>
-    {{ $plataforms->links() }}
+    {{ $topics->links() }}
 </div>
 

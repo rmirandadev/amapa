@@ -276,6 +276,13 @@ return [
             'classes'   => 'text-info',
             'role'      => ['Administrador','Editor','Assessor'],
         ],
+        [
+            'text'      => 'Tópicos',
+            'route'     => 'topic.index',
+            'icon'      => 'fas fa-fw fa-hat-cowboy',
+            'active'    => ['topic*'],
+            'role'      => ['Administrador','Editor','Assessor'],
+        ],
 
         [
             'text'      => 'Notícias',

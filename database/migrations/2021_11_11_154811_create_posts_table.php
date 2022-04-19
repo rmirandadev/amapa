@@ -32,6 +32,7 @@ class CreatePostsTable extends Migration
             $table->foreignId('subcategory_id')->constrained('subcategories');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('user_finished_id')->nullable()->constrained('users');
+            $table->foreignId('topic_id')->nullable()->constrained('topics');
             $table->timestamps();
         });
     }

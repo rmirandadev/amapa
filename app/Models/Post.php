@@ -9,7 +9,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','subtitle','slug','publication_date','image','image_legend','image_photographer','text','status','clicks','highlight','finished','category_id','subcategory_id','user_id','user_finished_id'];
+    protected $fillable = ['title','subtitle','slug','publication_date','image','image_legend','image_photographer','text','status','clicks','highlight','finished','category_id','subcategory_id','user_id','topic_id','user_finished_id'];
 
     const STATUS = [0 => 'Inativa', 1 => 'Ativa'];
     public function getStatusViewAttribute(): string
@@ -57,6 +57,11 @@ class Post extends Model
     public function subcategory()
     {
         return $this->belongsTo(Subcategory::class);
+    }
+
+    public function topic()
+    {
+        return $this->belongsTo(Topic::class);
     }
 
     public function getDateViewAttribute()

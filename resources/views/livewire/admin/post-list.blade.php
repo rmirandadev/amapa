@@ -45,20 +45,31 @@
                 <td class="text-center">{!! $post->status_view !!}</td>
                 <td class="text-center">{!! $post->finished_view !!}</td>
                 <td class="text-center">
-                    <a href="{{ route('user.show',$post->user->id) }}" data-toggle="popover" title="{{ $post->user->name }}" data-content="<i class='fas fa-calendar-alt'></i> Em: {{date('d/m/Y',strtotime($post->updated_at))}} às {{date('H:i',strtotime($post->updated_at))}}h" class="btn btn-dark btn-xs"><i class="fas fa-user"></i></a>
-                    <a href="{{ route('post.show',$post->id) }}" class="btn btn-warning btn-xs"><i class="fas fa-eye"></i></a>
-                    @if(auth()->user()->hasRole('Assessor') && $post->user_finished_id != null)
-                        <button class="btn btn-info btn-xs" disabled="disabled"><i class="fas fa-edit"></i></button>
-                    @else
-                        <a href="{{ route('post.edit',$post->id) }}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
-                    @endif
-                    @role('Administrador|Editor')
-                    {!! Form::model($post, ['method' => 'delete', 'route' => ['post.destroy', $post->id], 'class' =>'form-delete', 'style' => 'display:inline']) !!}
-                    <button type="submit" name="delete_modal" class="btn btn-danger btn-xs delete"><i class="fa fa-trash"></i></button>
-                    {!! Form::close() !!}
-                    @else
-                        <button class="btn btn-danger btn-xs delete" disabled><i class="fa fa-trash"></i></button>
-                        @endrole
+
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <a href="{{ route('user.show',$post->user->id) }}" data-toggle="popover" title="{{ $post->user->name }}" data-content="<i class='fas fa-calendar-alt'></i> Em: {{date('d/m/Y',strtotime($post->updated_at))}} às {{date('H:i',strtotime($post->updated_at))}}h" class="btn btn-dark btn-xs"><i class="fas fa-user"></i></a>
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-xs btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-tools mr-1"></i> Ações
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="{{ route('post.show',$post->id) }}"><i class="fas fa-eye"></i> Detalhes</a>
+                                @if(auth()->user()->hasRole('Assessor') && $post->user_finished_id != null)
+                                    <a class="dropdown-item disabled" href="{{ route('post.edit',$post->id) }}"><i class="fas fa-edit"></i> Editar</a>
+                                @else
+                                    <a class="dropdown-item" href="{{ route('post.edit',$post->id) }}"><i class="fas fa-edit"></i> Editar</a>
+                                @endif
+                                @role('Administrador|Editor')
+                                <div class="dropdown-divider"></div>
+                                {!! Form::model($post, ['method' => 'delete', 'route' => ['post.destroy', $post->id], 'class' =>'form-delete']) !!}
+                                <a class="dropdown-item text-danger delete" type="submit"><i class="fas fa-trash-alt"></i> Deletar</a>
+                                {!! Form::close() !!}
+                                @else
+                                <a class="dropdown-item text-danger delete disabled" type="submit"><i class="fas fa-trash-alt"></i> Deletar</a>
+                                @endrole
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
         @empty

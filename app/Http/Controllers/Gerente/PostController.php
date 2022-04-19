@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Company;
 use App\Models\Post;
 use App\Models\Subcategory;
+use App\Models\Topic;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -38,8 +39,9 @@ class PostController extends Controller
         $users = User::orderBy('name')->role('Assessor')->pluck('name','id');
         $companies = Company::orderBy('name')->pluck('name','id');
         $categories = Category::orderBy('name')->pluck('name','id');
+        $topics = Topic::orderBy('name')->pluck('name','id');
         $subcategories = [];
-        return view('admin.post.create',compact('users','categories','subcategories','companies'));
+        return view('admin.post.create',compact('users','categories','topics','subcategories','companies'));
     }
 
     public function store(PostRequest $request)
@@ -70,16 +72,17 @@ class PostController extends Controller
     {
         if(auth()->user()->hasRole('Assessor') && $post->user_finished_id != null)
             return redirect()->route('post.index')->withToastError('Você não tem permissão!');
-        
+
         $users = User::orderBy('name')->role('Assessor')->pluck('name','id');
         $companies = Company::orderBy('name')->pluck('name','id');
         $categories = Category::orderBy('name')->pluck('name','id');
+        $topics = Topic::orderBy('name')->pluck('name','id');
         $category = Category::whereId($post->category_id)->first();
         $subcategories = Subcategory::orderBy('name')
             ->WhereHas('category', function($q) use ($category){
                 $q->where('id', '=', $category->id);
             })->pluck('name','id');
-        return view('admin.post.edit',compact('post','users','categories','category','subcategories','companies'));
+        return view('admin.post.edit',compact('post','users','categories','topics','category','subcategories','companies'));
     }
 
     public function update(PostRequest $request, $id)

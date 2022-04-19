@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', env('APP_NAME') . ' - Plataformas')
+@section('title', env('APP_NAME') . ' - Tópicos')
 
 @section('content_header')
-    <h5 class="text-muted"><i class="fas fa-coins"></i> Plataformas</h5>
+    <h5 class="text-muted"><i class="fas fa-hat-cowboy"></i> Tópicos</h5>
 @stop
 
 @section('content')
@@ -14,10 +14,10 @@
         <div class="card-header">
             <h3 class="card-title mt-2">Listagem</h3>
             <div class="card-tools">
-                <a href="{{route('plataform.create')}}" class="btn btn-success btn-sm text-white"> <i class="fas fa-folder-plus"></i> Adicionar</a>
+                <a href="{{route('topic.create')}}" class="btn btn-success text-white"> <i class="fas fa-folder-plus"></i> Adicionar</a>
             </div>
         </div>
-        @livewire('plataform-list')
+        @livewire('topic-list')
     </div>
 @stop
 
@@ -29,17 +29,6 @@
     @include('sweetalert::alert')
     @livewireScripts
     <script>
-        $(document).ready(function(){
-            $('[data-toggle="popover"]').popover({
-                html: true,
-                trigger: 'hover',
-                placement: 'top',
-                content: function () {
-                    return '<img src="'+$(this).data('img') + '" class="img-fluid" />';
-                }
-            });
-        });
-
         $('table').on('click', '.form-delete', function(e){
             e.preventDefault();
             var $form=$(this);

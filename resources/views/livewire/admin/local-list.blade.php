@@ -34,7 +34,7 @@
             <th>Plataforma</th>
             <th class="text-center">Largura</th>
             <th class="text-center">Altura</th>
-            <th class="text-center w-25">Ação</th>
+            <th class="text-center">Ação</th>
         </tr>
         </thead>
         <tbody>
@@ -45,11 +45,22 @@
                 <td class="text-center">{{ $local->width }}</td>
                 <td class="text-center">{{ $local->height }}</td>
                 <td class="text-center">
-                    <a href="{{ route('user.show',$local->user->id) }}" data-toggle="popover" title="{{ $local->user->name }}" data-content="<i class='fas fa-calendar-alt'></i> Em: {{date('d/m/Y',strtotime($local->updated_at))}} às {{date('H:i',strtotime($local->updated_at))}}h" class="btn btn-dark btn-xs"><i class="fas fa-user"></i></a>
-                    <a href="{{ route('local.edit',$local->id) }}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
-                    {!! Form::model($local, ['method' => 'delete', 'route' => ['local.destroy', $local->id], 'class' =>'form-delete', 'style' => 'display:inline']) !!}
-                    <button type="submit" name="delete_modal" class="btn btn-danger btn-xs delete"><i class="fa fa-trash"></i></button>
-                    {!! Form::close() !!}
+
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <a href="{{ route('user.show',$local->user->id) }}" data-toggle="popover" title="{{ $local->user->name }}" data-content="<i class='fas fa-calendar-alt'></i> Em: {{date('d/m/Y',strtotime($local->updated_at))}} às {{date('H:i',strtotime($local->updated_at))}}h" class="btn btn-dark btn-xs"><i class="fas fa-user"></i></a>
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-xs btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-tools mr-1"></i> Ações
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="{{ route('local.edit',$local->id) }}"><i class="fas fa-edit"></i> Editar</a>
+                                <div class="dropdown-divider"></div>
+                                {!! Form::model($local, ['method' => 'delete', 'route' => ['local.destroy', $local->id], 'class' =>'form-delete']) !!}
+                                <a class="dropdown-item text-danger" type="submit" class="delete"><i class="fas fa-trash-alt"></i> Deletar</a>
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
         @empty

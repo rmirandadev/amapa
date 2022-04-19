@@ -23,5 +23,6 @@ Route::resource('plataform',\App\Http\Controllers\Gerente\PlataformController::c
 Route::resource('local',\App\Http\Controllers\Gerente\LocalController::class)->middleware('role:Administrador|Editor');
 Route::resource('ads',\App\Http\Controllers\Gerente\AdsController::class)->middleware('role:Administrador|Editor');
 Route::resource('post',\App\Http\Controllers\Gerente\PostController::class)->middleware('role:Administrador|Editor|Assessor');
+Route::resource('topic',\App\Http\Controllers\Gerente\TopicController::class)->middleware('role:Administrador|Editor|Assessor');
 Route::get('get-ads-local/{id}',[\App\Http\Controllers\Gerente\AdsController::class,'getAdsLocal'])->name('get-ads-local')->middleware('role:Administrador|Editor');
 Route::get('get-subcategory/{id}',[\App\Http\Controllers\Gerente\PostController::class,'getSubcategory'])->name('get-subcategory')->middleware('role:Administrador|Editor');
