@@ -26,7 +26,7 @@ class Post extends Model
     const FINISHED = [0 => 'Notícia aberta', 1 => 'Notícia finalizada'];
     public function getFinishedViewAttribute(): string
     {
-        return $this->finished == 0 ? "<span class='badge badge-danger'>Notícia aberta</span>" : "<span class='badge badge-success'>Notícia finalizada</span>";
+        return $this->finished == 0 ? "<span class='badge badge-danger'>Aberta</span>" : "<span class='badge badge-success'>Finalizada</span>";
     }
 
     public function user()

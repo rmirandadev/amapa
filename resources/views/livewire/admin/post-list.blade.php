@@ -40,7 +40,7 @@
         <tbody>
         @forelse($posts as $post)
             <tr>
-                <td class="text-center">{{ date('d/m/Y',strtotime($post->publication_date)) }}</td>
+                <td class="text-center">{{ date('d/m/y',strtotime($post->publication_date)) }}</td>
                 <td>{{ $post->title }}</td>
                 <td class="text-center">{!! $post->status_view !!}</td>
                 <td class="text-center">{!! $post->finished_view !!}</td>
