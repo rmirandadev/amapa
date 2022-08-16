@@ -39,11 +39,13 @@
                 <div class="col-md-8">
                     <div class="small text-muted"><i class="fas fa-user"></i> {{ $post->user->name }}</div>
                     <div class="small text-muted"><i class="fas fa-calendar-alt"></i> Publicada: {{ $post->date_view }} - <i class="fa fa-eye"></i> {{ $post->clicks }} </div>
-                    <img src="{{URL::asset('storage/posts/'.$post->image) }}" width="100%" class="img-fluid img-thumbnail mt-3" alt="">
-                    @if($post->image_legend)
-                        <div class="small bg-blue-secondary text-white p-2">{{ $post->image_legend }}</div>
+                    @if($post->image)
+                        <img src="{{URL::asset('storage/posts/'.$post->image) }}" width="100%" class="img-fluid img-thumbnail mt-3 mb-5" alt="">
+                        @if($post->image_legend)
+                            <div class="small bg-blue-secondary text-white p-2">{{ $post->image_legend }}</div>
+                        @endif
                     @endif
-                    <p class="my-5">
+                    <p>
                         {!! $post->text !!}
                     </p>
                 </div>
