@@ -11,7 +11,7 @@ class BannerList extends Component
     use WithPagination;
     public $search = '';
     public $pagina = 10;
-    public $orderBy = 'title';
+    public $orderBy = 'created_at';
     public $orderAsc = true;
 
     protected $paginationTheme = 'bootstrap';

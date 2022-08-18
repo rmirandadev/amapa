@@ -11,7 +11,7 @@ class EventList extends Component
     use WithPagination;
     public $search = '';
     public $pagina = 10;
-    public $orderBy = 'id';
+    public $orderBy = 'initial_date';
     public $orderAsc = true;
 
     protected $paginationTheme = 'bootstrap';

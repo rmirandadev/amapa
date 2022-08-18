@@ -71,7 +71,7 @@
                 <td class="text-center">
 
                     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                        <a href="{{ route('user.show',$event->user->id) }}" data-toggle="popover" title="{{ $event->user->name }}" data-content="<i class='fas fa-calendar-alt'></i> Em: {{date('d/m/Y',strtotime($event->updated_at))}} às {{date('H:i',strtotime($event->updated_at))}}h" class="btn btn-dark btn-xs"><i class="fas fa-user"></i></a>
+                        <a href="{{ route('user.show',$event->user->id) }}" data-toggle="popover" title="{{ $event->user->name }}" data-content="<i class='fas fa-calendar-alt'></i> Em: {{date('d/m/Y',strtotime($event->initial_date))}} às {{date('H:i',strtotime($event->initial_date))}}h" class="btn btn-dark btn-xs"><i class="fas fa-user"></i></a>
                         <div class="btn-group" role="group">
                             <a class="btn btn-xs btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-tools mr-1"></i> Ações
