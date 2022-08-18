@@ -45,11 +45,21 @@
                 <td class="text-center"><a href="{{ $social->link }}" target="_blank"><span class='badge badge-primary'><i class='fas fa-external-link-alt'></i> Link</span></a></td>
                 <td class="text-center">{!! $social->StatusView !!}</td>
                 <td class="text-center">
-                    <span data-toggle="popover" title="{{ $social->user->name }}" data-content="<i class='fas fa-calendar-alt'></i> Em: {{date('d/m/Y',strtotime($social->updated_at))}} às {{date('H:i',strtotime($social->updated_at))}}h" class="btn btn-dark btn-xs"><i class="fas fa-user"></i></span>
-                    <a href="{{ route('social.edit',$social->id) }}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
-                    {!! Form::model($social, ['method' => 'delete', 'route' => ['social.destroy', $social->id], 'class' =>'form-delete', 'style' => 'display:inline']) !!}
-                    <button type="submit" name="delete_modal" class="btn btn-danger btn-xs delete"><i class="fa fa-trash"></i></button>
-                    {!! Form::close() !!}
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <a href="{{ route('user.show',$social->user->id) }}" data-toggle="popover" title="{{ $social->user->name }}" data-content="<i class='fas fa-calendar-alt'></i> Em: {{date('d/m/Y',strtotime($social->updated_at))}} às {{date('H:i',strtotime($social->updated_at))}}h" class="btn btn-dark btn-xs"><i class="fas fa-user"></i></a>
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-xs btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-tools mr-1"></i> Ações
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="{{ route('social.edit',$social->id) }}"><i class="fas fa-edit"></i> Editar</a>
+                                <div class="dropdown-divider"></div>
+                                {!! Form::model($social, ['method' => 'delete', 'route' => ['social.destroy', $social->id], 'class' =>'form-delete']) !!}
+                                <a class="dropdown-item text-danger" type="submit" class="delete"><i class="fas fa-trash-alt"></i> Deletar</a>
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
         @empty

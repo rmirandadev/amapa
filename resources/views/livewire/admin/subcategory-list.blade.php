@@ -43,11 +43,21 @@
                 <td>{{ $subcategory->category->name }}</td>
                 <td class="text-center" style="color:{{ $subcategory->category->color }} "><i class="fas fa-circle"></i></td>
                 <td class="text-center">
-                    <span data-toggle="popover" title="{{ $subcategory->user->name }}" data-content="<i class='fas fa-calendar-alt'></i> Em: {{date('d/m/Y',strtotime($subcategory->updated_at))}} às {{date('H:i',strtotime($subcategory->updated_at))}}h" class="btn btn-dark btn-xs"><i class="fas fa-user"></i></span>
-                    <a href="{{ route('subcategory.edit',$subcategory->id) }}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
-                    {!! Form::model($subcategory, ['method' => 'delete', 'route' => ['subcategory.destroy', $subcategory->id], 'class' =>'form-delete', 'style' => 'display:inline']) !!}
-                    <button type="submit" name="delete_modal" class="btn btn-danger btn-xs delete"><i class="fa fa-trash"></i></button>
-                    {!! Form::close() !!}
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <a href="{{ route('user.show',$subcategory->user->id) }}" data-toggle="popover" title="{{ $subcategory->user->name }}" data-content="<i class='fas fa-calendar-alt'></i> Em: {{date('d/m/Y',strtotime($subcategory->updated_at))}} às {{date('H:i',strtotime($subcategory->updated_at))}}h" class="btn btn-dark btn-xs"><i class="fas fa-user"></i></a>
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-xs btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-tools mr-1"></i> Ações
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="{{ route('subcategory.edit',$subcategory->id) }}"><i class="fas fa-edit"></i> Editar</a>
+                                <div class="dropdown-divider"></div>
+                                {!! Form::model($subcategory, ['method' => 'delete', 'route' => ['subcategory.destroy', $subcategory->id], 'class' =>'form-delete']) !!}
+                                <a class="dropdown-item text-danger" type="submit" class="delete"><i class="fas fa-trash-alt"></i> Deletar</a>
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
         @empty

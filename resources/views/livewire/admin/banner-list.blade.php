@@ -47,11 +47,21 @@
                 <td class="text-center">{!! $banner->status_view !!}</td>
                 <td class="text-center">{!! $banner->link_view !!}</td>
                 <td class="text-center">
-                    <a href="{{ route('user.show',$banner->user->id) }}" data-toggle="popover" title="{{ $banner->user->name }}" data-content="<i class='fas fa-calendar-alt'></i> Em: {{date('d/m/Y',strtotime($banner->updated_at))}} às {{date('H:i',strtotime($banner->updated_at))}}h" class="btn btn-dark btn-xs"><i class="fas fa-user"></i></a>
-                    <a href="{{ route('banner.edit',$banner->id) }}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
-                    {!! Form::model($banner, ['method' => 'delete', 'route' => ['banner.destroy', $banner->id], 'class' =>'form-delete', 'style' => 'display:inline']) !!}
-                    <button type="submit" name="delete_modal" class="btn btn-danger btn-xs delete"><i class="fa fa-trash"></i></button>
-                    {!! Form::close() !!}
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <a href="{{ route('user.show',$banner->user->id) }}" data-toggle="popover" title="{{ $banner->user->name }}" data-content="<i class='fas fa-calendar-alt'></i> Em: {{date('d/m/Y',strtotime($banner->updated_at))}} às {{date('H:i',strtotime($banner->updated_at))}}h" class="btn btn-dark btn-xs"><i class="fas fa-user"></i></a>
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-xs btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-tools mr-1"></i> Ações
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="{{ route('banner.edit',$banner->id) }}"><i class="fas fa-edit"></i> Editar</a>
+                                <div class="dropdown-divider"></div>
+                                {!! Form::model($banner, ['method' => 'delete', 'route' => ['banner.destroy', $banner->id], 'class' =>'form-delete']) !!}
+                                <a class="dropdown-item text-danger" type="submit" class="delete"><i class="fas fa-trash-alt"></i> Deletar</a>
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
         @empty
