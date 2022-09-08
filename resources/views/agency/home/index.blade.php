@@ -50,7 +50,7 @@
                 <!--FIM SLIDE-->
                 <!--INICIO EVENTOS-->
                 <div class="col-md-4 event">
-                    <h5 class="text-center mt-2"><strong class="event-top">Pautas e Eventos</strong></h5>
+                    <h5 class="text-center mt-2 w-75 mx-auto"><strong class="event-top">Pautas e Eventos</strong></h5>
                     <div class="card border-0">
 
                         <div class="card-body p-0">
@@ -90,7 +90,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="text-center mt-2"><strong class="event-bottom"><a href="{{ route('agency.event-index') }}" class="text-white">+ ver todas</a></strong></div>
+                    <div class="text-center mt-2 w-75 mx-auto"><strong class="event-bottom"><a href="{{ route('agency.event-index') }}" class="text-white">+ ver todas</a></strong></div>
                 </div>
                 <!--FIM EVENTOS-->
             </div>
