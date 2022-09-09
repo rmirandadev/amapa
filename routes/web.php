@@ -1,6 +1,5 @@
 <?php
 use Illuminate\Support\Facades\Route;
-
 //Gerente
 Route::domain('gerente.'.env('SESSION_DOMAIN'))->group(function () {
     Auth::routes();
