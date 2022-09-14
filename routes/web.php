@@ -1,5 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
+
+
 //Gerente
 Route::domain('gerente.'.env('SESSION_DOMAIN'))->group(function () {
     Auth::routes();
@@ -8,6 +10,6 @@ Route::domain('gerente.'.env('SESSION_DOMAIN'))->group(function () {
 
 //Noticia
 Route::domain('agencia.'.env('SESSION_DOMAIN'))->group(function () {
-    Route::middleware(['web'])->group(base_path('routes/agencia.php'));
+	Route::middleware(['web'])->group(base_path('routes/agencia.php'));
 });
 
