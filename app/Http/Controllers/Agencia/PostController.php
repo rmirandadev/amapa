@@ -34,6 +34,9 @@ class PostController extends Controller
     public function show($slug)
     {
         $post = Post::whereSlug($slug)->first();
+        if(!$post->finished)
+            abort(404,'Notícia não encontrada');
+
         $post->increment('clicks');
         $outPosts = Post::with('category')->where('category_id',$post->category_id)->inRandomOrder()->limit(8)->get();
         return view('agency.post.show',compact('post','outPosts'));
