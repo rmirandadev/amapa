@@ -6,7 +6,11 @@
     @else
         @include('adminlte::partials.common.brand-logo-xs')
     @endif
-
+    <div class="col-md-12 mt-3 ml-3">
+        @foreach(auth()->user()->roles as $role)
+            <span class="badge badge-primary">{{$role->name}}</span>
+        @endforeach
+    </div>
     {{-- Sidebar menu --}}
     <div class="sidebar">
         <nav class="pt-2">
