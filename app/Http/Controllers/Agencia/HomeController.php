@@ -16,7 +16,7 @@ class HomeController extends Controller
     {
         $banners = Banner::orderBy('id','DESC')->limit(5)->get();
         $tourisms = Tourism::orderBy('name')->get();
-        $events = Event::active()->where('initial_date','>=',date('Y-m-d'))->limit(5)->get();
+        $events = Event::where('initial_date','>=',date('Y-m-d'))->limit(5)->get();
         $highlights = Post::whereHighlight('1')->orderBy('publication_date')->limit(9)->get();
         $morePost = Post::with('category')->orderBy('clicks','DESC')->limit(8)->get();
         $lastPosts = Post::orderBy('id','DESC')->limit(8)->get();
