@@ -38,10 +38,9 @@
                     </ul>
                     |
                     <span class="socials">
-                        <i class="fab fa-instagram"></i>
-                        <i class="fab fa-twitter"></i>
-                        <i class="fab fa-facebook-f"></i>
-                        <i class="fab fa-youtube"></i>
+                        @foreach($socials as $social)
+                            <a href="{{ $social->link }}" target="_blank" class="text-white">{!! $social->icon !!}</a>
+                        @endforeach
                     </span>
 
                 </div>
