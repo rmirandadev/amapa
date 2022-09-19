@@ -109,7 +109,7 @@
                                     <div class="card" style="border-left: 5px solid {{ $highlight->category->color }}">
                                         <div class="card-body">
                                             <div class="small text-muted"><i class="fas fa-calendar-alt mb-2"></i> {{ $highlight->date_view }} </div>
-                                            {{ LimitChar(strip_tags($highlight->subtitle),80) }}
+                                            {{ LimitChar(strip_tags($highlight->title),80) }}
                                         </div>
                                     </div>
                                 </a>
