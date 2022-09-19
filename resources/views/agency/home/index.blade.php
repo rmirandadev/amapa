@@ -18,7 +18,7 @@
                         <div class="carousel-inner">
                             @foreach($banners as $i => $banner)
                                 <div class="carousel-item {{ $i == 0 ? 'active' : '' }}">
-                                    @isset($banner->link)
+                                    @if($banner->link)
                                         <a href="{{ $banner->link }}">
                                             <img src="{{URL::asset('storage/banners/'.$banner->image) }}" class="d-block w-100" alt="...">
                                             <div class="carousel-caption d-none d-md-block text-start ps-3">
@@ -32,7 +32,7 @@
                                             <h5>{{ $banner->title }}</h5>
                                             <p>{{ $banner->subtitle }}</p>
                                         </div>
-                                    @endisset
+                                    @endif
                                 </div>
                             @endforeach
                         </div>
