@@ -22,7 +22,7 @@ class TopicController extends Controller
     public function store(TopicRequest $request)
     {
         $data = $request->all();
-        $data['name'] = strtolower($request->name);
+        $data['name'] = ucfirst(strtolower($request->name));
         Topic::create($data);
         return redirect()->route('topic.index')->withToastSuccess('Tópico adicionado!');
     }
@@ -36,7 +36,7 @@ class TopicController extends Controller
     public function update(TopicRequest $request, $id)
     {
         $data = $request->all();
-        $data['name'] = strtolower($request->name);
+        $data['name'] = ucfirst(strtolower($request->name));
         Topic::findOrFail($id)->update($data);
         return redirect()->route('topic.index')->withToastSuccess('Tópico atualizado!');
     }

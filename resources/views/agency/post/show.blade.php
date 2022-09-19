@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="col-md-12 my-3">
-                    @if($post->topic)<span class="badge bg-secondary">{{ $post->topic->name }}</span>@endif
+                    @if($post->topic)<span class="badge bg-secondary">{{ ucfirst($post->topic->name) }}</span>@endif
                     <h2><strong><i class="las la-battery-three-quarters"></i> {{ $post->title }}</strong></h2>
                     <p>{{ $post->subtitle }}</p>
                 </div>
