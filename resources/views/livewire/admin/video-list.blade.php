@@ -30,7 +30,8 @@
     <table class="table table-hover table-striped mb-3">
         <thead>
         <tr>
-            <th>Nome</th>
+            <th class="text-center">Thumb</th>
+            <th>Detalhes</th>
             <th class="text-center">Código</th>
             <th class="text-center">Link</th>
             <th class="text-center">Status</th>
@@ -40,7 +41,11 @@
         <tbody>
         @forelse($videos as $video)
             <tr>
-                <td>{{ $video->name }}</td>
+                <td class="text-center"><img src="https://img.youtube.com/vi/{{ $video->cod }}/default.jpg" alt=""></td>
+                <td>
+                    <strong>{{ $video->name }}</strong>
+                    <p>{{ $video->text }}</p>
+                </td>
                 <td class="text-center">{!! $video->cod !!}</td>
                 <td class="text-center"><a href="https://www.youtube.com/watch?v={{$video->cod}}" target="_blank"><span class='badge badge-primary'><i class='fas fa-external-link-alt'></i> Link</span></a></td>
                 <td class="text-center">{!! $video->StatusView !!}</td>

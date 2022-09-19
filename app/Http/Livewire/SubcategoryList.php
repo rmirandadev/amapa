@@ -11,7 +11,7 @@ class SubcategoryList extends Component
     use WithPagination;
     public $search = '';
     public $pagina = 10;
-    public $orderBy = 'id';
+    public $orderBy = 'name';
     public $orderAsc = true;
 
     protected $paginationTheme = 'bootstrap';
