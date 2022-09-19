@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Post;
+use App\Models\Scopes\PostScope;
 use Livewire\Component;
 use Livewire\WithPagination;
 

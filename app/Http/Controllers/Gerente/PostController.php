@@ -7,6 +7,7 @@ use App\Http\Requests\PostRequest;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\Post;
+use App\Models\Scopes\PostScope;
 use App\Models\Subcategory;
 use App\Models\Topic;
 use App\Models\User;
