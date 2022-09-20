@@ -18,9 +18,6 @@ class PostScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        if(Auth::check())
-            return $builder;
-
         $builder->whereFinished('1')->whereStatus('1');
     }
 

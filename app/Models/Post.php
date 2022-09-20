@@ -70,9 +70,4 @@ class Post extends Model
         return date('d',strtotime($this->publication_date)) . ' ' . GetMonth(date('m',strtotime($this->publication_date))) . ' ' . date('Y',strtotime($this->publication_date));
     }
 
-    protected static function booted()
-    {
-        static::addGlobalScope(new PostScope());
-    }
-
 }
