@@ -195,37 +195,38 @@
             <!-- PUBLICIDADE FIM -->
 
             <!-- INICIO MAIS LIDAS -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="titles text-blue-secondary">Mais lidas do mês</div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="more_views" id="imageView">
-                    <div class="owl-old owl-carousel owl-theme">
-                        @foreach($morePost as $more)
-                            <div class="item">
-                                <a href="{{ route('agency.post-show',$more->slug) }}">
-                                    <div class="card">
-                                        <div class="card-header text-white px-2 py-1 small" style="background-color: {{ $more->category->color }}; border-color: {{ $more->category->color }}">{{ $more->category->name }}</div>
-                                        @isset($more->image)
-                                            <img src="{{URL::asset('storage/posts/'.$more->image) }}" width="100%" height="150" class="fakeImg mb-3" alt="">
-                                        @else
-                                            <img src="{{URL::asset('images/no-post.jpg') }}" width="100%" height="150" class="fakeImg mb-3" alt="">
-                                        @endisset
-                                        <div class="card-body p-0">
-                                            <div class="small text-muted"><i class="fas fa-calendar-alt"></i> {{ $more->date_view }} - <i class="fas fa-eye"></i> {{ $more->clicks }}</div>
-                                            <h6>{{ LimitChar(strip_tags($more->subtitle),85) }}</h6>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        @endforeach
+            @if(!$morePost->isEmpty())
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="titles text-blue-secondary">Mais lidas do mês</div>
                     </div>
                 </div>
-            </div>
-            <!-- FIM MAIS LIDAS -->
-
+                <div class="row">
+                    <div class="more_views" id="imageView">
+                        <div class="owl-old owl-carousel owl-theme">
+                            @foreach($morePost as $more)
+                                <div class="item">
+                                    <a href="{{ route('agency.post-show',$more->slug) }}">
+                                        <div class="card">
+                                            <div class="card-header text-white px-2 py-1 small" style="background-color: {{ $more->category->color }}; border-color: {{ $more->category->color }}">{{ $more->category->name }}</div>
+                                            @isset($more->image)
+                                                <img src="{{URL::asset('storage/posts/'.$more->image) }}" width="100%" height="150" class="fakeImg mb-3" alt="">
+                                            @else
+                                                <img src="{{URL::asset('images/no-post.jpg') }}" width="100%" height="150" class="fakeImg mb-3" alt="">
+                                            @endisset
+                                            <div class="card-body p-0">
+                                                <div class="small text-muted"><i class="fas fa-calendar-alt"></i> {{ $more->date_view }} - <i class="fas fa-eye"></i> {{ $more->clicks }}</div>
+                                                <h6>{{ LimitChar(strip_tags($more->subtitle),85) }}</h6>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <!-- FIM MAIS LIDAS -->
+            @endif
             <!-- INICIO CONHEÇA O AMAPÁ -->
             <div class="row my-5">
                 <div class="col-md-12">

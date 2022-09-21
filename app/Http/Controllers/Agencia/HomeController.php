@@ -18,7 +18,7 @@ class HomeController extends Controller
         $tourisms = Tourism::orderBy('name')->get();
         $events = Event::where('initial_date','>=',date('Y-m-d'))->limit(5)->get();
         $highlights = Post::whereHighlight('1')->orderBy('publication_date')->limit(9)->get();
-        $morePost = Post::with('category')->orderBy('clicks','DESC')->limit(8)->get();
+        $morePost = Post::with('category')->more()->orderBy('clicks','DESC')->limit(8)->get();
         $lastPosts = Post::orderBy('id','DESC')->limit(8)->get();
         $video = Video::orderBy('id','DESC')->first();
         return view('agency.home.index',compact('banners','tourisms','events','highlights','morePost','video','lastPosts'));
