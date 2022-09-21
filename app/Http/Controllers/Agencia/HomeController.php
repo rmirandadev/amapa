@@ -14,7 +14,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $banners = Banner::orderBy('id','DESC')->limit(5)->get();
+        $banners = Banner::whereStatus('1')->orderBy('id','DESC')->limit(5)->get();
         $tourisms = Tourism::orderBy('name')->get();
         $events = Event::where('initial_date','>=',date('Y-m-d'))->limit(5)->get();
         $highlights = Post::whereHighlight('1')->orderBy('publication_date')->limit(9)->get();
