@@ -30,7 +30,6 @@
     <table class="table table-hover table-striped mb-3">
         <thead>
         <tr>
-            <th class="text-center">Sigla</th>
             <th>Nome</th>
             <th class="text-center">Link</th>
             <th class="text-center">Status</th>
@@ -40,15 +39,25 @@
         <tbody>
         @forelse($companies as $company)
             <tr>
-                <td class="text-center">{!! $company->initials ?? "<span class='badge badge-light'>x</span>" !!}</td>
-                <td>{{$company->name }}</td>
+                <td>@if($company->initials) {{ $company->initials }} - @endif {{$company->name }}</td>
                 <td class="text-center"><a href="{{ $company->link }}" target="_blank"><span class='badge badge-primary'><i class='fas fa-external-link-alt'></i> Link</span></a></td>
                 <td class="text-center">{!! $company->StatusView !!}</td>
                 <td class="text-center">
-                    <a href="{{ route('company.edit',$company->id) }}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i> Editar</a>
-                    {!! Form::model($company, ['method' => 'delete', 'route' => ['company.destroy', $company->id], 'class' =>'form-delete', 'style' => 'display:inline']) !!}
-                    <button type="submit" name="delete_modal" class="btn btn-danger btn-xs delete"><i class="fa fa-trash"></i> Deletar</button>
-                    {!! Form::close() !!}
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <a href="{{ route('user.show',$company->user->id) }}" data-toggle="popover" title="{{ $company->user->name }}" data-content="<i class='fas fa-calendar-alt'></i> Em: {{date('d/m/Y',strtotime($company->created_at))}} às {{date('H:i',strtotime($company->created_at))}}h" class="btn btn-dark btn-xs"><i class="fas fa-user"></i></a>
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-xs btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-tools mr-1"></i> Ações
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="{{ route('company.edit',$company->id) }}"><i class="fas fa-edit"></i> Editar</a>
+                                <div class="dropdown-divider"></div>
+                                {!! Form::model($company, ['method' => 'delete', 'route' => ['company.destroy', $company->id], 'class' =>'form-delete']) !!}
+                                <a class="dropdown-item text-danger" type="submit" class="delete"><i class="fas fa-trash-alt"></i> Deletar</a>
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
         @empty

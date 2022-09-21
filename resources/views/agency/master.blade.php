@@ -20,6 +20,8 @@
     @stack('meta')
     <link rel="stylesheet" href="{{ mix('css/agency.min.css') }}">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
     @stack('css')
 
     <title>{{ env('APP_NAME') }}</title>
@@ -27,22 +29,32 @@
 <body>
 <header>
     {{--INICIO TOPO UM--}}
-    <div class="container-fluid bg-blue-primary py-3 text-white text-end" id="topo_um">
+    <div class="container-fluid bg-blue-primary py-3 text-white" id="topo_um">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <ul>
-                        <li class="list-inline-item">SECRETARIAS</li>
-                        <li class="list-inline-item">PORTAL DA TRANSPARÊNCIA</li>
-                        <li class="list-inline-item"><i class="fas fa-sign-language"></i> ACESSIBILIDADE</li>
-                    </ul>
-                    |
-                    <span class="socials">
-                        @foreach($socials as $social)
-                            <a href="{{ $social->link }}" target="_blank" class="text-white">{!! $social->icon !!}</a>
-                        @endforeach
-                    </span>
+                    <div class="d-flex justify-content-end">
+                        <span class="mt-2">
+                            <ul>
+                                <li class="list-inline-item">PORTAL DA TRANSPARÊNCIA</li>
+                                <li class="list-inline-item"><i class="fas fa-sign-language"></i> ACESSIBILIDADE</li>
+                            </ul>
 
+                            <span class="mx-2">|</span>
+
+                            <span class="socials me-3">
+                                @foreach($socials as $social)
+                                    <a href="{{ $social->link }}" target="_blank" class="text-white">{!! $social->icon !!}</a>
+                                @endforeach
+                            </span>
+                        </span>
+                        <select class="form-select form-select-sm w-25" id="select-2">
+                            <option></option>
+                            @foreach($companies as $company)
+                                <option value="{{ $company->link }}">{{ $company->initials }} - {{ $company->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
@@ -122,6 +134,21 @@
 
 
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#select-2').select2({
+            theme: 'bootstrap-5',
+            placeholder: "Secretarias...",
+        }).on('change', function () {
+            let url = $(this).val(); // get selected value
+            if (url) { // require a URL
+                window.open(url, '_blank');
+            }
+            return false;
+        });
+    });
+</script>
 @stack('js')
 </body>
 </html>

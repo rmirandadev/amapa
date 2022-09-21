@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Ads;
 use App\Models\Category;
+use App\Models\Company;
 use App\Models\Social;
 use App\View\Components\Agency\LastNoticeComponent;
 use Illuminate\Support\Facades\Blade;
@@ -28,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        View::share('companies', Company::whereStatus('1')->orderBy('name')->get());
         View::share('socials', Social::orderBy('name')->get());
         View::share('categories', Category::orderBy('name')->get());
         View::share('banners_two', Ads::where('initial_date','<=', date('Y-m-d'))->where('final_date','>',NOW())->whereLocalId(2)->inRandomOrder()->first());

@@ -29,6 +29,14 @@
     @include('sweetalert::alert')
     @livewireScripts
     <script>
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover({
+                html: true,
+                trigger: 'hover',
+                placement: 'top',
+            });
+        });
+
         $('table').on('click', '.form-delete', function(e){
             e.preventDefault();
             var $form=$(this);
