@@ -26,6 +26,8 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
+        Auth::logoutOtherDevices(request('password'));
+
         $user->monitor()->create([
             'ip'            => UserSystem::get_ip(),
             'browsers'      => UserSystem::get_browsers(),
@@ -51,4 +53,5 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
 }
