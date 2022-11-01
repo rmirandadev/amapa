@@ -24,6 +24,15 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    protected function credentials(Request $request)
+    {
+        return [
+            'email' => request()->email,
+            'password' => request()->password,
+            'status' => 1
+        ];
+    }
+
     protected function authenticated(Request $request, $user)
     {
         Auth::logoutOtherDevices(request('password'));
