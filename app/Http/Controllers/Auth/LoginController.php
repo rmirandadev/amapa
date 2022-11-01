@@ -24,17 +24,12 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    protected function credentials(Request $request)
-    {
-        return [
-            'email' => request()->email,
-            'password' => request()->password,
-            'status' => 1
-        ];
-    }
-
     protected function authenticated(Request $request, $user)
     {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1])) {
+            return redirect()->intended($this->redirectPath());
+        }
+
         Auth::logoutOtherDevices(request('password'));
 
         $user->monitor()->create([
