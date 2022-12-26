@@ -235,10 +235,23 @@
                 <div class="col-md-12">
                     <img src="{{ asset('images/conheca_amapa.jpeg') }}" class="w-100" alt="Conheça o Amapá">
                 </div>
+                <div class="col-md-12 my-3">
+                    <div class="card">
+                        <div class="card-header">Prefeituras do Amapá</div>
+                        <div class="card-body">
+                            <select class="form-select form-select-sm" id="prefetures">
+                                <option></option>
+                                @foreach($prefectures as $prefecture)
+                                    <option value="{{ $prefecture->link }}">{{ $prefecture->initials }} - {{ $prefecture->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-12 conheca_amapa">
                     <div class="owl-amapa owl-carousel owl-theme">
                         @foreach($tourisms as $tourism)
-                            <div class="item mt-3">
+                            <div class="item">
                                 <a href="{{ route('agency.tourism-show',$tourism->slug) }}">
                                     <div class="card">
                                         <div class="card-header text-white p-1 bg-green-primary text-center">{{ $tourism->name }}</div>

@@ -33,6 +33,7 @@
             <th>Nome</th>
             <th class="text-center">Link</th>
             <th class="text-center">Status</th>
+            <th>Tipo</th>
             <th class="text-center w-25">Ação</th>
         </tr>
         </thead>
@@ -42,6 +43,7 @@
                 <td>@if($company->initials) {{ $company->initials }} - @endif {{$company->name }}</td>
                 <td class="text-center"><a href="{{ $company->link }}" target="_blank"><span class='badge badge-primary'><i class='fas fa-external-link-alt'></i> Link</span></a></td>
                 <td class="text-center">{!! $company->StatusView !!}</td>
+                <td>{!! $company->TypeView !!}</td>
                 <td class="text-center">
                     <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                         <a href="{{ route('user.show',$company->user->id) }}" data-toggle="popover" title="{{ $company->user->name }}" data-content="<i class='fas fa-calendar-alt'></i> Em: {{date('d/m/Y',strtotime($company->created_at))}} às {{date('H:i',strtotime($company->created_at))}}h" class="btn btn-dark btn-xs"><i class="fas fa-user"></i></a>

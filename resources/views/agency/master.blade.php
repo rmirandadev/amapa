@@ -48,7 +48,7 @@
                                 @endforeach
                             </span>
                         </span>
-                        <select class="form-select form-select-sm w-25" id="select-2">
+                        <select class="form-select form-select-sm w-50" id="select-2">
                             <option></option>
                             @foreach($companies as $company)
                                 <option value="{{ $company->link }}">{{ $company->initials }} - {{ $company->name }}</option>
@@ -140,6 +140,17 @@
         $('#select-2').select2({
             theme: 'bootstrap-5',
             placeholder: "Secretarias...",
+        }).on('change', function () {
+            let url = $(this).val(); // get selected value
+            if (url) { // require a URL
+                window.open(url, '_blank');
+            }
+            return false;
+        });
+
+        $('#prefetures').select2({
+            theme: 'bootstrap-5',
+            placeholder: "Prefeituras...",
         }).on('change', function () {
             let url = $(this).val(); // get selected value
             if (url) { // require a URL

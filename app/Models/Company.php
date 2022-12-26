@@ -11,7 +11,10 @@ class Company extends Model
 
     const STATUS = [0 => 'Inativo', 1 => 'Ativo'];
 
-    protected $fillable = ['name','initials','link','status','user_id'];
+    const TYPE = [1 => 'Órgão do Governo', 2 => 'Prefeitura', 3 => 'Portal de Serviço'];
+    public function getTypeViewAttribute() { return $this->type ? self::TYPE[$this->type] : null; }
+
+    protected $fillable = ['name','initials','link','status','type','user_id'];
 
     public function getStatusViewAttribute(): string
     {

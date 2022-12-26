@@ -27,6 +27,7 @@ class CompanyRequest extends FormRequest
             'name'   =>  ['required','unique:companies,name,'.$this->company],
             'link'   =>  ['required','url'],
             'status' =>  ['required'],
+            'type' =>  ['required'],
         ];
     }
 
@@ -37,6 +38,7 @@ class CompanyRequest extends FormRequest
             'name.unique'       => 'Nome já existe',
             'link.required'     => 'Link obrigatório',
             'status.required'   => 'Status obrigatório',
+            'type.required'     => 'Tipo obrigatório',
         ];
     }
 }

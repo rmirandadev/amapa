@@ -29,7 +29,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::share('companies', Company::whereStatus('1')->orderBy('name')->get());
+        View::share('companies', Company::whereStatus('1')->whereType('1')->orderBy('name')->get());
+        View::share('prefectures', Company::whereStatus('1')->whereType('2')->orderBy('name')->get());
+        View::share('services', Company::whereStatus('1')->whereType('3')->orderBy('name')->get());
         View::share('socials', Social::orderBy('name')->get());
         View::share('categories', Category::orderBy('name')->get());
         View::share('banners_two', Ads::where('initial_date','<=', date('Y-m-d'))->where('final_date','>',NOW())->whereLocalId(2)->inRandomOrder()->first());

@@ -19,6 +19,7 @@ class CreateCompaniesTable extends Migration
             $table->string('initials')->nullable();
             $table->text('link');
             $table->enum('status',array_keys(\App\Models\Company::STATUS));
+            $table->enum('type',array_keys(\App\Models\Company::TYPE));
 
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
