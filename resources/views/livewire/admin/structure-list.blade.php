@@ -31,7 +31,6 @@
         <thead>
         <tr>
             <th>Nome</th>
-            <th class="text-center">Imagem</th>
             <th class="text-center w-25">Ação</th>
         </tr>
         </thead>
@@ -40,18 +39,21 @@
             <tr>
                 <td>{{ $structure->name }}</td>
                 <td class="text-center">
-                    @if($structure->image)
-                        <a href="#" data-toggle="popover" data-img="{{ URL::asset('storage/structures/'.$structure->image) }}"><span class="badge badge-secondary"><i class='fas fa-image'></i> Imagem</span></a>
-                    @else
-                        <span class="badge badge-light"><i class='fas fa-image'></i> Imagem</span>
-                    @endif
-                </td>
-                <td class="text-center">
-                    <a href="{{ route('user.show',$structure->user->id) }}" data-toggle="popover" title="{{ $structure->user->name }}" data-content="<i class='fas fa-calendar-alt'></i> Em: {{date('d/m/Y',strtotime($structure->updated_at))}} às {{date('H:i',strtotime($structure->updated_at))}}h" class="btn btn-dark btn-xs"><i class="fas fa-user"></i></a>
-                    <a href="{{ route('structure.edit',$structure->id) }}" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
-                    {!! Form::model($structure, ['method' => 'delete', 'route' => ['structure.destroy', $structure->id], 'class' =>'form-delete', 'style' => 'display:inline']) !!}
-                    <button type="submit" name="delete_modal" class="btn btn-danger btn-xs delete"><i class="fa fa-trash"></i></button>
-                    {!! Form::close() !!}
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <a href="{{ route('user.show',$structure->user->id) }}" data-toggle="popover" title="{{ $structure->user->name }}" data-content="<i class='fas fa-calendar-alt'></i> Em: {{date('d/m/Y',strtotime($structure->updated_at))}} às {{date('H:i',strtotime($structure->updated_at))}}h" class="btn btn-dark btn-xs"><i class="fas fa-user"></i></a>
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-xs btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-tools mr-1"></i> Ações
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="{{ route('structure.edit',$structure->id) }}"><i class="fas fa-edit"></i> Editar</a>
+                                <div class="dropdown-divider"></div>
+                                {!! Form::model($structure, ['method' => 'delete', 'route' => ['structure.destroy', $structure->id], 'class' =>'form-delete']) !!}
+                                <a class="dropdown-item text-danger delete" type="submit"><i class="fas fa-trash-alt"></i> Deletar</a>
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
         @empty
