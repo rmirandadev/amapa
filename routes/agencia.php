@@ -4,6 +4,9 @@ Route::group(['as' => 'agency.'], function(){
 
     Route::middleware('post_global')->group(function (){
         Route::get('/', [App\Http\Controllers\Agencia\HomeController::class, 'index'])->name('index');
+        Route::get('/governo', [App\Http\Controllers\Agencia\GovController::class, 'index'])->name('gov-index');
+        Route::get('/governo/{slug}', [App\Http\Controllers\Agencia\GovController::class, 'show'])->name('gov-show');
+
         Route::get('/noticias', [App\Http\Controllers\Agencia\PostController::class, 'index'])->name('post-index');
         Route::get('/noticia/{slug}', [App\Http\Controllers\Agencia\PostController::class, 'show'])->name('post-show');
         Route::get('/noticias/categoria/{slug}', [App\Http\Controllers\Agencia\PostController::class, 'category'])->name('post-category');

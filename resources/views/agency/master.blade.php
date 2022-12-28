@@ -32,32 +32,34 @@
     <div class="container-fluid bg-blue-primary py-3 text-white" id="topo_um">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="d-flex justify-content-end">
-                        <span class="mt-2">
-                            <ul>
-                                <li class="list-inline-item">PORTAL DA TRANSPARÊNCIA</li>
-                                <li class="list-inline-item"><i class="fas fa-sign-language"></i> ACESSIBILIDADE</li>
-                            </ul>
+                <div class="col-md-6 pt-2">
+                    <span class="menu-access">
+                        <ul class="p-0">
+                            <li class="list-inline-item"><a href="{{ route('agency.gov-index') }}"><i class="fas fa-university"></i> GOVERNO</a></li>
+                            <li class="list-inline-item">PORTAL DA TRANSPARÊNCIA</li>
+                            <li class="list-inline-item"><i class="fas fa-sign-language"></i> ACESSIBILIDADE</li>
+                        </ul>
 
-                            <span class="mx-2">|</span>
+                        <span class="mx-2">|</span>
 
-                            <span class="socials me-3">
-                                @foreach($socials as $social)
-                                    <a href="{{ $social->link }}" target="_blank" class="text-white">{!! $social->icon !!}</a>
-                                @endforeach
-                            </span>
-                        </span>
-                        <select class="form-select form-select-sm w-50" id="select-2">
-                            <option></option>
-                            @foreach($companies as $company)
-                                <option value="{{ $company->link }}">{{ $company->initials }} - {{ $company->name }}</option>
+                        <span class="socials">
+                            @foreach($socials as $social)
+                                <a href="{{ $social->link }}" target="_blank" class="text-white">{!! $social->icon !!}</a>
                             @endforeach
-                        </select>
-                    </div>
+                        </span>
+                    </span>
+                </div>
+                <div class="col-md-6">
+                    <select class="form-select form-select-sm" id="select-2">
+                        <option></option>
+                        @foreach($companies as $company)
+                            <option value="{{ $company->link }}">{{ $company->initials }} - {{ $company->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     {{--FIM TOPO UM--}}
 

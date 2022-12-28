@@ -17,6 +17,8 @@ a { text-decoration: none !important;}
 .links a { color: #333; transition: 0.5s  }
 .links a:hover { color: @blue-secondary; }
 
+header #topo_um a { color: #FFF }
+header #topo_um a:hover { color: @grey-primary }
 header #topo_um { font-size: 12px; border-bottom: 5px solid @green-primary }
 header #topo_um ul { display:inline }
 header #topo_um .socials i { margin-left: 5px }
@@ -24,6 +26,9 @@ header #topo_um .socials i { margin-left: 5px }
 header #topo_dois .logo_gov { font-size: 17px; margin-top: 13px }
 header #topo_dois .logo_ag { font-size: 35px; font-weight: bold; font-family: 'Saira Condensed', sans-serif; }
 header #topo_dois .menu_pesquisa { margin-top: 10px }
+
+main .gov-list a { color: @grey-secondary }
+main .gov-list a:hover { color: @grey-primary }
 
 main .titles { font-weight: bold; padding: 5px 0; font-family: 'Saira Condensed', sans-serif; font-size: 2rem; }
 main .slide .carousel-caption {background-color: rgba(51, 51, 51, 0.5);max-width: 100%;width:100%;left: 0;bottom: -10px;}
@@ -68,6 +73,8 @@ main .conheca_amapa a:hover { color: @green-primary; }
 
 /* Extra Small */
 @media(max-width:767px){
+    header .menu-access { display: none }
+
     main .slide {margin-bottom: 15px;}
 
     main .event-top {padding: 10px 40px 15px 40px;}
