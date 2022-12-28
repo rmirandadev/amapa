@@ -26,7 +26,7 @@
                     <h2 class="mb-4"><strong class="text-blue-secondary">{{ $gov->name }}</strong></h2>
                    <div class="row">
                        <div class="col-md-3">
-                           <img src="{{ URL::asset('storage/structures/'.$gov->image) }}" alt="Imagem" class="img-fluid img-thumbnail shadow mb-3">
+                           <img src="{{ URL::asset('storage/structures/'.$gov->image) }}" alt="Imagem" class="img-fluid img-thumbnail shadow my-3">
                        </div>
                        <div class="col-md-9">
                            <p>{!! $gov->text !!}</p>
