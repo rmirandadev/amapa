@@ -69,7 +69,7 @@
             <div class="row">
                 <div class="col-md-4 logo_gov">
                     <a href="{{ route('agency.index') }}" class="text-white">
-                        <img src="{{ asset('images/logo-branca.png') }}" class="me-2" width="35" alt=""><strong>AMAPÁ</strong> GOVERNO DO ESTADO
+                        <img src="{{ asset('images/brasao-branco.png') }}" class="me-2" width="35" alt=""><strong>AMAPÁ</strong> GOVERNO DO ESTADO
                     </a>
                 </div>
                 <div class="col-md-4 menu_pesquisa">
